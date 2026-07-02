@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TBBS Media Kit — The Blue Bridge Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:        #3766FF;
+      --blue-light:  #95AAFF;
+      --bg:          #0E0E0E;
+      --surface:     #131313;
+      --surface-mid: #1A1A1A;
+      --surface-hi:  #222222;
+      --white:       #FFFFFF;
+      --w80:         rgba(255,255,255,0.80);
+      --w60:         rgba(255,255,255,0.60);
+      --w35:         rgba(255,255,255,0.35);
+      --w10:         rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--w80);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 28px 80px;
+    }
+
+    .hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--w10);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .hero-logo {
+      height: 36px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.95;
+    }
+
+    .hero-headline {
+      font-size: clamp(36px, 6vw, 58px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-headline span { color: var(--blue); }
+
+    .hero-intro {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--w60);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .group-photo {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 8px;
+      margin: 40px 0 0;
+      display: block;
+      filter: brightness(0.85) contrast(1.05);
+    }
+
+    .photo-credit {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--w35);
+      margin-top: 8px;
+      text-align: right;
+    }
+
+    .section {
+      padding: 52px 0;
+      border-bottom: 1px solid var(--w10);
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .body-text {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--w60);
+      line-height: 1.75;
+    }
+
+    .body-text p + p { margin-top: 14px; }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .highlight-item {
+      background: var(--surface);
+      border: 1px solid var(--w10);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+
+    .highlight-item .venue {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+
+    .highlight-item .context {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--w35);
+    }
+
+    .highlight-item.own .venue::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      margin-right: 8px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
+    .setup-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .setup-card {
+      background: var(--surface);
+      border: 1px solid var(--w10);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .setup-card .setup-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--w35);
+      margin-bottom: 6px;
+    }
+
+    .setup-card .setup-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .setup-card.wide { grid-column: span 2; }
+
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .member-card {
+      background: var(--surface);
+      border: 1px solid var(--w10);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .member-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: grayscale(100%) brightness(0.82) contrast(1.12);
+    }
+
+    .member-info { padding: 14px 16px; }
+
+    .member-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .member-handle {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--blue-light);
+      text-decoration: none;
+    }
+
+    .member-handle:hover { color: var(--blue); }
+
+    .music-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .music-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      border: 1px solid var(--w10);
+      border-radius: 8px;
+      padding: 14px 18px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .music-item:hover {
+      border-color: rgba(55,102,255,0.4);
+      background: var(--surface-mid);
+    }
+
+    .music-item .music-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .music-item .music-link {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--blue);
+      letter-spacing: 0.05em;
+    }
+
+    .music-item.label-row {
+      border-color: rgba(55,102,255,0.3);
+      background: rgba(55,102,255,0.07);
+    }
+
+    .socials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--w10);
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+
+    .social-item:hover { border-color: rgba(55,102,255,0.4); }
+
+    .social-platform {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--w35);
+      min-width: 64px;
+    }
+
+    .social-handle {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--w80);
+    }
+
+    .booking-block {
+      background: var(--surface);
+      border: 1px solid rgba(55,102,255,0.25);
+      border-radius: 10px;
+      padding: 32px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .booking-text .booking-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .booking-text .booking-sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--w35);
+    }
+
+    .booking-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .booking-email {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .booking-email:hover { color: var(--blue-light); }
+
+    .booking-ig {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--w35);
+      text-decoration: none;
+    }
+
+    .booking-ig:hover { color: var(--w60); }
+
+    .subsection-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--w35);
+      margin: 24px 0 12px;
+    }
+
+    @media (max-width: 600px) {
+      .highlights-grid,
+      .setup-grid,
+      .socials-grid { grid-template-columns: 1fr; }
+      .setup-card.wide { grid-column: span 1; }
+      .roster-grid { grid-template-columns: repeat(2, 1fr); }
+      .booking-block { flex-direction: column; align-items: flex-start; }
+      .booking-contact { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <img class="hero-logo" src="images/logo.svg" alt="The Blue Bridge Studio">
+    <h1 class="hero-headline">The Blue<br><span>Bridge</span> Studio</h1>
+    <p class="hero-intro">
+      TBBS je rap label z Českých Budějc. Šest artists s vlastními projekty a vlastním zvukem, ale nikdo nedělá sólo, protože crew je vždy přítomná. Společný jmenovatel je TBBS Mixtape. Na stage jsme všichni najednou, žádný frontman, jen celý label a nálož energie.
+    </p>
+    <div>
+      <img class="group-photo" src="images/group.jpg" alt="The Blue Bridge Studio">
+      <p class="photo-credit">Foto: Filip Vaněk</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <p class="section-label">O nás</p>
+    <h2 class="section-title">Bio</h2>
+    <div class="body-text">
+      <p>The Blue Bridge Studio pojmenoval modrej most v Českých Budějcích. Začínali jsme v bytě hned vedle, pak přišla Žižkárna.</p>
+      <p>Šest lidí, který spojuje fotbal, hospoda a rap. Wolgi, Telly S, JKid, Glaza01, Almez a Marell Trafft. Každý s vlastním zvukem, vlastními projekty — ale při tvorbě je vždycky přítomná celá crew. Na stage fungujeme jako jeden organismus. Žádný frontman, všichni najednou.</p>
+      <p>Odehráli jsme vlastní akce na Střeše Budějc, v Lannově loděnici a Žižkárně, stáli jsme jako support před Lboyem, 58G nebo Sergeiem Barracudou, zahráli jsme na EREM Tour v mcFABRIKA — a vždy doručili.</p>
+      <p>Dostat Budějce na rapovou mapu je plán od první chvíle.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Vystoupení</p>
+    <h2 class="section-title">Highlights</h2>
+
+    <p class="subsection-title">Vlastní akce</p>
+    <div class="highlights-grid">
+      <div class="highlight-item own">
+        <div class="venue">Střecha Budějc</div>
+        <div class="context">České Budějovice</div>
+      </div>
+      <div class="highlight-item own">
+        <div class="venue">Lannova Loděnice</div>
+        <div class="context">České Budějovice</div>
+      </div>
+      <div class="highlight-item own">
+        <div class="venue">Žižkárna</div>
+        <div class="context">České Budějovice</div>
+      </div>
+    </div>
+
+    <p class="subsection-title" style="margin-top:24px;">Support & tour</p>
+    <div class="highlights-grid">
+      <div class="highlight-item">
+        <div class="venue">Music Club Paradox</div>
+        <div class="context">Support — Lboy</div>
+      </div>
+      <div class="highlight-item">
+        <div class="venue">K2</div>
+        <div class="context">Support — Lboy & Dorian</div>
+      </div>
+      <div class="highlight-item">
+        <div class="venue">K2</div>
+        <div class="context">Support — 58G</div>
+      </div>
+      <div class="highlight-item">
+        <div class="venue">Brooklyn klub</div>
+        <div class="context">Support — Sergei Barracuda</div>
+      </div>
+      <div class="highlight-item">
+        <div class="venue">mcFABRIKA</div>
+        <div class="context">EREM Tour</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Technické info</p>
+    <h2 class="section-title">Live Setup</h2>
+    <div class="setup-grid">
+      <div class="setup-card">
+        <div class="setup-label">Sestava</div>
+        <div class="setup-value">6 umělců</div>
+      </div>
+      <div class="setup-card">
+        <div class="setup-label">Délka setu</div>
+        <div class="setup-value">30–90 minut</div>
+      </div>
+      <div class="setup-card">
+        <div class="setup-label">Technická podmínka</div>
+        <div class="setup-value">5 mikrofonů</div>
+      </div>
+      <div class="setup-card">
+        <div class="setup-label">Zvukové zajištění</div>
+        <div class="setup-value">Pořadatel</div>
+      </div>
+      <div class="setup-card wide">
+        <div class="setup-label">Typ show</div>
+        <div class="setup-value">Celý crew na stage, bez pevného frontmana — každý člen střídavě vede</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Crew</p>
+    <h2 class="section-title">Roster</h2>
+    <div class="roster-grid">
+      <div class="member-card">
+        <img class="member-photo" src="images/wolgi.jpg" alt="Wolgi">
+        <div class="member-info">
+          <div class="member-name">Wolgi</div>
+          <a class="member-handle" href="https://www.instagram.com/wolginhu/" target="_blank">@wolginhu</a>
+        </div>
+      </div>
+      <div class="member-card">
+        <img class="member-photo" src="images/tellys.jpg" alt="Telly S">
+        <div class="member-info">
+          <div class="member-name">Telly S</div>
+          <a class="member-handle" href="https://www.instagram.com/sedlotelly/" target="_blank">@sedlotelly</a>
+        </div>
+      </div>
+      <div class="member-card">
+        <img class="member-photo" src="images/jkid.jpg" alt="JKid">
+        <div class="member-info">
+          <div class="member-name">JKid</div>
+          <a class="member-handle" href="https://www.instagram.com/jkid_tbbs/" target="_blank">@jkid_tbbs</a>
+        </div>
+      </div>
+      <div class="member-card">
+        <img class="member-photo" src="images/glaza01.jpg" alt="Glaza01">
+        <div class="member-info">
+          <div class="member-name">Glaza01</div>
+          <a class="member-handle" href="https://www.instagram.com/glaza01_tbbs/" target="_blank">@glaza01_tbbs</a>
+        </div>
+      </div>
+      <div class="member-card">
+        <img class="member-photo" src="images/almez.jpg" alt="Almez">
+        <div class="member-info">
+          <div class="member-name">Almez</div>
+          <a class="member-handle" href="https://www.instagram.com/almezj/" target="_blank">@almezj</a>
+        </div>
+      </div>
+      <div class="member-card">
+        <img class="member-photo" src="images/marelltrafft.jpg" alt="Marell Trafft">
+        <div class="member-info">
+          <div class="member-name">Marell Trafft</div>
+          <a class="member-handle" href="https://www.instagram.com/marell_t/" target="_blank">@marell_t</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Hudba</p>
+    <h2 class="section-title">Spotify</h2>
+    <div class="music-list">
+      <a class="music-item label-row" href="https://open.spotify.com/artist/6PBda5MVXNGupdFxuDbYmD" target="_blank">
+        <span class="music-name">The Blue Bridge Studio</span>
+        <span class="music-link">Label ↗</span>
+      </a>
+      <a class="music-item" href="https://open.spotify.com/artist/60mVWovFl5rfRXnIu56X0Z" target="_blank">
+        <span class="music-name">Wolgi</span>
+        <span class="music-link">Spotify ↗</span>
+      </a>
+      <a class="music-item" href="https://open.spotify.com/artist/09qaOkWxUbmiOoy1d8j92g" target="_blank">
+        <span class="music-name">Telly S</span>
+        <span class="music-link">Spotify ↗</span>
+      </a>
+      <a class="music-item" href="https://open.spotify.com/artist/0zfSP9r1bXprXwJJiRScmo" target="_blank">
+        <span class="music-name">JKid</span>
+        <span class="music-link">Spotify ↗</span>
+      </a>
+      <a class="music-item" href="https://open.spotify.com/artist/0ZM748NHMUvm04JqJnbSkA" target="_blank">
+        <span class="music-name">Glaza01</span>
+        <span class="music-link">Spotify ↗</span>
+      </a>
+      <a class="music-item" href="https://open.spotify.com/artist/7HWdqntLQaxAVux4k68orG" target="_blank">
+        <span class="music-name">Almez</span>
+        <span class="music-link">Spotify ↗</span>
+      </a>
+      <a class="music-item" href="https://open.spotify.com/artist/5ZEJH6cEn3AtY23FFdwzBI" target="_blank">
+        <span class="music-name">Marell Trafft</span>
+        <span class="music-link">Spotify ↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Online</p>
+    <h2 class="section-title">Sociální sítě</h2>
+
+    <p class="subsection-title">Label</p>
+    <div class="socials-grid">
+      <a class="social-item" href="https://www.instagram.com/bluebridgestudio/" target="_blank">
+        <span class="social-platform">Instagram</span>
+        <span class="social-handle">@bluebridgestudio</span>
+      </a>
+      <a class="social-item" href="https://www.tiktok.com/@bluebridge.studio" target="_blank">
+        <span class="social-platform">TikTok</span>
+        <span class="social-handle">@bluebridge.studio</span>
+      </a>
+      <a class="social-item" href="https://www.youtube.com/@thebluebridgestudio" target="_blank">
+        <span class="social-platform">YouTube</span>
+        <span class="social-handle">@thebluebridgestudio</span>
+      </a>
+      <a class="social-item" href="https://www.bluebridge.studio" target="_blank">
+        <span class="social-platform">Web</span>
+        <span class="social-handle">bluebridge.studio</span>
+      </a>
+    </div>
+
+    <p class="subsection-title" style="margin-top:24px;">Členové</p>
+    <div class="socials-grid">
+      <a class="social-item" href="https://www.instagram.com/wolginhu/" target="_blank">
+        <span class="social-platform">Wolgi</span>
+        <span class="social-handle">@wolginhu</span>
+      </a>
+      <a class="social-item" href="https://www.instagram.com/sedlotelly/" target="_blank">
+        <span class="social-platform">Telly S</span>
+        <span class="social-handle">@sedlotelly</span>
+      </a>
+      <a class="social-item" href="https://www.instagram.com/jkid_tbbs/" target="_blank">
+        <span class="social-platform">JKid</span>
+        <span class="social-handle">@jkid_tbbs</span>
+      </a>
+      <a class="social-item" href="https://www.instagram.com/glaza01_tbbs/" target="_blank">
+        <span class="social-platform">Glaza01</span>
+        <span class="social-handle">@glaza01_tbbs</span>
+      </a>
+      <a class="social-item" href="https://www.instagram.com/almezj/" target="_blank">
+        <span class="social-platform">Almez</span>
+        <span class="social-handle">@almezj</span>
+      </a>
+      <a class="social-item" href="https://www.instagram.com/marell_t/" target="_blank">
+        <span class="social-platform">Marell Trafft</span>
+        <span class="social-handle">@marell_t</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-label">Kontakt</p>
+    <h2 class="section-title">Booking</h2>
+    <div class="booking-block">
+      <div class="booking-text">
+        <div class="booking-title">Máš zájem o spolupráci?</div>
+        <div class="booking-sub">Napiš typ akce, přibližný termín a co od nás čekáš.</div>
+      </div>
+      <div class="booking-contact">
+        <a class="booking-email" href="mailto:booking@bluebridge.studio">booking@bluebridge.studio</a>
+        <a class="booking-ig" href="https://www.instagram.com/bluebridgestudio/" target="_blank">nebo DM na @bluebridgestudio</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
